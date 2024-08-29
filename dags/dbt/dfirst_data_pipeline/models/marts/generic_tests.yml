@@ -1,0 +1,15 @@
+models:
+  - name: fact_orders
+    columns:
+      - name: ORDERKEY
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_tpch_orders')
+              field: ORDERKEY
+              severity: warn
+      - name: ORDERSTATUS
+        data_tests:
+          - accepted_values:
+              values: ['P','O','F']
